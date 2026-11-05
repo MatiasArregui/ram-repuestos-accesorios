@@ -255,3 +255,89 @@ footer {
     width: 100%;
   }
 }
+
+/* ------------------------------------------- ESTILOS DE LOS FORMS Y DELETE ------------------------------------------ */
+
+.card-delete {
+  background: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 30px;
+  margin-top: 50px;
+
+  border-radius: 12px;
+  border-top: 5px solid #d90429;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+}
+
+.card-delete h2 {
+  color: #111111;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.linea-roja {
+  width: 60px;
+  height: 4px;
+  background: #d90429;
+  margin: 0 auto 20px auto;
+  border-radius: 10px;
+}
+
+.card-delete p {
+  color: #444;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+.card-delete strong {
+  color: #d90429;
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-eliminar {
+  background: #d90429;
+  border: none;
+  color: white;
+
+  padding: 10px 25px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.btn-eliminar:hover {
+  background: #b00220;
+}
+
+.btn-cancelar {
+  background: #111111;
+  color: white;
+
+  text-decoration: none;
+
+  padding: 10px 25px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.btn-cancelar:hover {
+  background: #333333;
+  color: white;
+}

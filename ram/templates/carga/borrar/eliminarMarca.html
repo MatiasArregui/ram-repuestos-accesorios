@@ -1,16 +1,29 @@
 {% extends "./carga/base.html" %} {% block contenido %}
-<div class="container mt-4">
-  <h2>Eliminar Marca</h2>
 
-  <p>
-    ¿Está seguro de que desea eliminar la marca
-    <strong>{{ object.nombre }}</strong>?
-  </p>
+<div class="container d-flex justify-content-center">
+  <div class="card-delete">
+    <h2>Eliminar Marca</h2>
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
-    <a href="{% url 'listaMarcas' %}" class="btn btn-secondary"> Cancelar </a>
-  </form>
+    <div class="linea-roja"></div>
+
+    <p>
+      ¿Está seguro de que desea eliminar la marca
+      <strong>{{ object.nombre }}</strong>?
+    </p>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="acciones">
+        <button type="submit" class="btn-eliminar">
+          <i class="fa-solid fa-trash"></i>
+          Eliminar
+        </button>
+
+        <a href="{% url 'listaMarcas' %}" class="btn-cancelar"> Cancelar </a>
+      </div>
+    </form>
+  </div>
 </div>
+
 {% endblock %}
