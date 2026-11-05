@@ -116,6 +116,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'ram/static')
+]
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+#Imagenes de elementos, usuarios, etc
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Email

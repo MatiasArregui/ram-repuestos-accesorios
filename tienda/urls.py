@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 urlpatterns = [
     # path('', views.listadatos, name='listadatos'),
+    path("", views.InicioView.as_view(), name="inicio"),
     # Productos URLs--------------------------------------------------------------------------------->
     path("productos/", views.ListaProductos.as_view(), name="listaProductos"),
     path("productos/nuevo", views.ProductoCreateView.as_view(), name="nuevoElemento"),

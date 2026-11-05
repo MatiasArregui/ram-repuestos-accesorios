@@ -1,0 +1,23 @@
+{% extends "./carga/base.html" %} {% load static %} {% block contenido %}
+
+<div class="inicio-container">
+  <div class="imagen-principal">
+    <img
+      src="{% static 'img/img-1.jpg' %}"
+      alt="RAM Repuestos"
+      class="img-fluid"
+    />
+  </div>
+
+  <div class="menu-principal">
+    <a href="{% url 'listaMarcas' %}" class="btn-ram"> Marcas </a>
+
+    <a href="{% url 'listaProductos' %}" class="btn-ram"> Productos</a>
+
+    <a href="{% url 'listaSubcategorias' %}" class="btn-ram">
+      Sub-categorias
+    </a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,9 +1,9 @@
-{% extends "./base.html" %}
+{% extends "./carga/base.html" %}
 {% load static %}
 {% block contenido %}
 <div class="container mt-5">
   <div class="cont mb-5">
-    <h1 class="titulo">Elementos / Recursos / Vehículos / Maquinaria</h1>
+    <h1 class="titulo">Sub categorias</h1>
   </div>
 
     <table class="table table-light shadow-sm  mt-2">
@@ -17,8 +17,9 @@
           </tr>
         </thead>
         <tbody>
-          {% for p in Producto %}
-            {{p.nombre}}
+          {% for s in subcategoria %}
+            {{s.nombre}}
+            {{s.id}}
           {% endfor %}
         </tbody>
     </table>

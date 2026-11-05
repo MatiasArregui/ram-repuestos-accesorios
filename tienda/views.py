@@ -2,15 +2,18 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import SubCategoria, Producto, Marca
 from .forms import ProductoForm, SubcategoriaForm, MarcaForm
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView, TemplateView
 import os
 
+
+class InicioView(TemplateView):
+    template_name = os.path.join("carga", "manage", "managePage.html")
 
 
 # Create your views here.
 class ListaProductos(ListView):
     model = Producto
-    template_name = os.path.join("listas", "listaProductos.html")
+    template_name = os.path.join("carga","listas", "listaProductos.html")
     context_object_name = 'Producto'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
     # paginate_by = 7
@@ -18,18 +21,18 @@ class ListaProductos(ListView):
 class ProductoCreateView(CreateView):
     model = Producto
     form_class = ProductoForm
-    template_name =  os.path.join("forms", "productoFormulario.html")
+    template_name =  os.path.join("carga", "forms", "productoFormulario.html")
     success_url = reverse_lazy('listaProductos')
     
 class ProductoUpdateView(UpdateView):
     model = Producto
     form_class = ProductoForm
-    template_name = os.path.join("forms", "productoFormulario.html")
+    template_name = os.path.join("carga","forms", "productoFormulario.html")
     success_url = reverse_lazy('listaProductos')
     
 class ProductoDeleteView(DeleteView):
     model = Producto
-    template_name = os.path.join("borrar", "eliminarProducto.html")
+    template_name = os.path.join("carga","borrar", "eliminarProducto.html")
     success_url = reverse_lazy('listaProductos')
     
     
@@ -37,7 +40,7 @@ class ProductoDeleteView(DeleteView):
 # Create your views here.
 class ListaSubcategorias(ListView):
     model = SubCategoria
-    template_name = os.path.join("listas", "listaSubcategorias.html")
+    template_name = os.path.join("carga","listas", "listaSubcategorias.html")
     context_object_name = 'subcategoria'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
     # paginate_by = 7
@@ -45,18 +48,18 @@ class ListaSubcategorias(ListView):
 class SubcategoriaCreateView(CreateView):
     model = SubCategoria
     form_class = SubcategoriaForm
-    template_name =  os.path.join("forms", "subcategoriaFormulario.html")
+    template_name =  os.path.join("carga","forms", "subcategoriaFormulario.html")
     success_url = reverse_lazy('listaSubcategorias')
     
 class SubcategoriaUpdateView(UpdateView):
     model = SubCategoria
     form_class = SubcategoriaForm
-    template_name =  os.path.join("forms", "subcategoriaFormulario.html")
+    template_name =  os.path.join("carga","forms", "subcategoriaFormulario.html")
     success_url = reverse_lazy('listaSubcategorias')
     
 class SubcategoriaDeleteView(DeleteView):
-    model = Producto
-    template_name = os.path.join("borrar", "eliminarSubcategoria.html")
+    model = SubCategoria
+    template_name = os.path.join("carga","borrar", "eliminarSubcategoria.html")
     success_url = reverse_lazy('listaSubcategorias')
     
 
@@ -72,7 +75,7 @@ class SubcategoriaDeleteView(DeleteView):
 # Create your views here.
 class ListaMarcas(ListView):
     model = Marca
-    template_name = os.path.join("listas", "listaMarcas.html")
+    template_name = os.path.join("carga","listas", "listaMarcas.html")
     context_object_name = 'marcas'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
     # paginate_by = 7
@@ -80,18 +83,18 @@ class ListaMarcas(ListView):
 class MarcaCreateView(CreateView):
     model = Marca
     form_class = MarcaForm
-    template_name =  os.path.join("forms", "marcaFormulario.html")
+    template_name =  os.path.join("carga","forms", "marcaFormulario.html")
     success_url = reverse_lazy('listaMarcas')
     
 class MarcaUpdateView(UpdateView):
-    model = SubCategoria
-    form_class = SubcategoriaForm
-    template_name =  os.path.join("forms", "marcaFormulario.html")
+    model = Marca
+    form_class = MarcaForm
+    template_name =  os.path.join("carga","forms", "marcaFormulario.html")
     success_url = reverse_lazy('listaMarcas')
     
 class MarcaDeleteView(DeleteView):
-    model = Producto
-    template_name = os.path.join("borrar", "eliminarMarca.html")
+    model = Marca
+    template_name = os.path.join("carga","borrar", "eliminarMarca.html")
     success_url = reverse_lazy('listaMarcas')
     
     
