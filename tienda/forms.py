@@ -43,3 +43,16 @@ class SubcategoriaForm(forms.ModelForm):
             "nombre":"Nombre",
             "categoria":"categoria",
         }
+
+
+#FORMULARIO DE SUBCATEGORIAS (CREAR Y MODIFICAR)
+class MarcaForm(forms.ModelForm):
+    class Meta:
+        model = Marca
+        fields = ("nombre",)
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            "nombre":"Nombre",
+        }

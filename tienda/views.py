@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import SubCategoria, Producto, Marca
-from .forms import ProductoForm, SubcategoriaForm
+from .forms import ProductoForm, SubcategoriaForm, MarcaForm
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 import os
 
@@ -29,7 +29,7 @@ class ProductoUpdateView(UpdateView):
     
 class ProductoDeleteView(DeleteView):
     model = Producto
-    template_name = 'productos/eliminarProducto.html'
+    template_name = os.path.join("borrar", "eliminarProducto.html")
     success_url = reverse_lazy('listaProductos')
     
     
@@ -56,7 +56,42 @@ class SubcategoriaUpdateView(UpdateView):
     
 class SubcategoriaDeleteView(DeleteView):
     model = Producto
-    template_name = 'Subcategorias/eliminarSubcategoria.html'
+    template_name = os.path.join("borrar", "eliminarSubcategoria.html")
     success_url = reverse_lazy('listaSubcategorias')
+    
+
+
+
+
+
+
+
+
+    
+# <------------------------------------------>
+# Create your views here.
+class ListaMarcas(ListView):
+    model = Marca
+    template_name = os.path.join("listas", "listaMarcas.html")
+    context_object_name = 'marcas'
+    #Sacamos la paginacion para que nos permita usar los datos presentes en el template
+    # paginate_by = 7
+    
+class MarcaCreateView(CreateView):
+    model = Marca
+    form_class = MarcaForm
+    template_name =  os.path.join("forms", "marcaFormulario.html")
+    success_url = reverse_lazy('listaMarcas')
+    
+class MarcaUpdateView(UpdateView):
+    model = SubCategoria
+    form_class = SubcategoriaForm
+    template_name =  os.path.join("forms", "marcaFormulario.html")
+    success_url = reverse_lazy('listaMarcas')
+    
+class MarcaDeleteView(DeleteView):
+    model = Producto
+    template_name = os.path.join("borrar", "eliminarMarca.html")
+    success_url = reverse_lazy('listaMarcas')
     
     

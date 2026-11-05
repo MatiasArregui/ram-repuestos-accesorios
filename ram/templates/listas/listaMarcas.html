@@ -1,0 +1,54 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block contenido %}
+<div class="container mt-5">
+  <div class="cont mb-5">
+    <h1 class="titulo">Marcas</h1>
+  </div>
+
+    <table class="table table-light shadow-sm  mt-2">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col" class="d-none d-lg-table-cell">Tipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col" class="d-none d-md-table-cell">A cargo</th>
+            <th scope="col" class="d-flex justify-content-end">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in marcas %}
+            {{m.nombre}}
+          {% endfor %}
+        </tbody>
+    </table>
+
+    {% comment %} <div class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-primary mb-3" href="?page=1">
+                Primera
+            </a>
+            <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.previous_page_number }}">
+                Anterior
+            </a>
+        {% endif %}
+    
+        <span class="current-page btn btn-outline-light disabled text-primary mb-3">
+            {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+    
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.next_page_number }}">
+                Siguiente
+            </a>
+            <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.paginator.num_pages }}">
+                Última
+            </a>
+        {% endif %}
+    </div> {% endcomment %}
+
+
+    {% comment %} <a href={% url "nuevoElemento" %} class="customButton">+</a> {% endcomment %}
+</div>
+
+{% endblock %}
