@@ -14,7 +14,7 @@ class InicioView(TemplateView):
 class ListaProductos(ListView):
     model = Producto
     template_name = os.path.join("carga","listas", "listaProductos.html")
-    context_object_name = 'Producto'
+    context_object_name = 'productos'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
     # paginate_by = 7
     
@@ -41,7 +41,7 @@ class ProductoDeleteView(DeleteView):
 class ListaSubcategorias(ListView):
     model = SubCategoria
     template_name = os.path.join("carga","listas", "listaSubcategorias.html")
-    context_object_name = 'subcategoria'
+    context_object_name = 'subcategorias'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
     # paginate_by = 7
     
@@ -78,7 +78,7 @@ class ListaMarcas(ListView):
     template_name = os.path.join("carga","listas", "listaMarcas.html")
     context_object_name = 'marcas'
     #Sacamos la paginacion para que nos permita usar los datos presentes en el template
-    # paginate_by = 7
+    paginate_by = 7
     
 class MarcaCreateView(CreateView):
     model = Marca
