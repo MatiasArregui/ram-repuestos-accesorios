@@ -91,5 +91,6 @@ class Producto(models.Model):
         null=True
     )
 
+    
     def __str__(self):
         return self.nombre

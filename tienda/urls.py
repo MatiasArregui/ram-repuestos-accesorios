@@ -1,27 +1,32 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import views, viewsLanding
 # from .forms import LoginForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 urlpatterns = [
     # path('', views.listadatos, name='listadatos'),
-    path("", views.InicioView.as_view(), name="inicio"),
+    path("manage/", views.InicioView.as_view(), name="inicio"),
     # Productos URLs--------------------------------------------------------------------------------->
-    path("productos/", views.ListaProductos.as_view(), name="listaProductos"),
-    path("productos/nuevo", views.ProductoCreateView.as_view(), name="nuevoProducto"),
-    path("productos/modificar/<str:pk>", views.ProductoUpdateView.as_view(), name="modificarProducto"),
-    path("productos/borrar/<str:pk>", views.ProductoDeleteView.as_view(), name="borrarProducto"),
+    path("manage/productos/", views.ListaProductos.as_view(), name="listaProductos"),
+    path("manage/productos/nuevo", views.ProductoCreateView.as_view(), name="nuevoProducto"),
+    path("manage/productos/modificar/<str:pk>", views.ProductoUpdateView.as_view(), name="modificarProducto"),
+    path("manage/productos/borrar/<str:pk>", views.ProductoDeleteView.as_view(), name="borrarProducto"),
 
     # Subcategorias URLs--------------------------------------------------------------------------------->
-    path("subcategorias/", views.ListaSubcategorias.as_view(), name="listaSubcategorias"),
-    path("subcategorias/nuevo", views.SubcategoriaCreateView.as_view(), name="nuevaSubcategoria"),
-    path("subcategorias/modificar/<str:pk>", views.SubcategoriaUpdateView.as_view(), name="modificarSubcategoria"),
-    path("subcategorias/borrar/<str:pk>", views.SubcategoriaDeleteView.as_view(), name="borrarSubcategoria"),
+    path("manage/subcategorias/", views.ListaSubcategorias.as_view(), name="listaSubcategorias"),
+    path("manage/subcategorias/nuevo", views.SubcategoriaCreateView.as_view(), name="nuevaSubcategoria"),
+    path("manage/subcategorias/modificar/<str:pk>", views.SubcategoriaUpdateView.as_view(), name="modificarSubcategoria"),
+    path("manage/subcategorias/borrar/<str:pk>", views.SubcategoriaDeleteView.as_view(), name="borrarSubcategoria"),
     
     # Marcas URLs--------------------------------------------------------------------------------->
-    path("marcas/", views.ListaMarcas.as_view(), name="listaMarcas"),
-    path("marcas/nuevo", views.MarcaCreateView.as_view(), name="nuevaMarca"),
-    path("marcas/modificar/<str:pk>", views.MarcaUpdateView.as_view(), name="modificarMarca"),
-    path("marcas/borrar/<str:pk>", views.MarcaDeleteView.as_view(), name="borrarMarca"),
+    path("manage/marcas/", views.ListaMarcas.as_view(), name="listaMarcas"),
+    path("manage/marcas/nuevo", views.MarcaCreateView.as_view(), name="nuevaMarca"),
+    path("manage/marcas/modificar/<str:pk>", views.MarcaUpdateView.as_view(), name="modificarMarca"),
+    path("manage/marcas/borrar/<str:pk>", views.MarcaDeleteView.as_view(), name="borrarMarca"),
+    
+    
+    # Landing page URLs--------------------------------------------------------------------------------->
+    path("", viewsLanding.ProductosLista.as_view(), name="principalLanding"),
+    path("productos/detalle/<str:pk>", viewsLanding.DetalleProducto.as_view(), name="detalleProducto"),
 ]
