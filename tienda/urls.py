@@ -27,6 +27,6 @@ urlpatterns = [
     
     
     # Landing page URLs--------------------------------------------------------------------------------->
-    path("", viewsLanding.ProductosLista.as_view(), name="principalLanding"),
+    path("", viewsLanding.principal, name="principalLanding"),
     path("productos/detalle/<str:pk>", viewsLanding.DetalleProducto.as_view(), name="detalleProducto"),
 ]

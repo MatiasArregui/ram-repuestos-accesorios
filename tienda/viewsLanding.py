@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from .models import SubCategoria, Producto, Marca
 from .forms import ProductoForm, SubcategoriaForm, MarcaForm
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView, TemplateView, DetailView
-
+import random
 import os
 import re
 from urllib.parse import urlparse, parse_qs
@@ -45,31 +45,52 @@ def convertir_url_drive(url):
 # ==========================================
 # LISTADO DE PRODUCTOS
 # ==========================================
+# Pagina principal ----------------------------------------------------------------------------------->
+def principal(request):
+    productosId = [x.pk for x in Producto.objects.all()]
+    producto_aleratorios = []
+    try: 
+        for x in range(16):
+            producto_aleratorios.append(random.choice(productosId))
+        productos = [{"pk":x.pk, "nombre":x.nombre, "imagen_mostrar":convertir_url_drive(x.imagen_url), "precio":x.precio} for x in Producto.objects.all() if x.pk in producto_aleratorios]
+        context={"productos": productos}
+    except:
+        for x in range(2):
+            producto_aleratorios.append(random.choice(productosId))
+        productos = [{"pk":x.pk, "nombre":x.nombre, "imagen_mostrar":convertir_url_drive(x.imagen_url), "precio":x.precio} for x in Producto.objects.all() if x.pk in producto_aleratorios]
+        context={"productos": productos}
 
-class ProductosLista(ListView):
+    
+    return render(request, os.path.join("landingPage", "pages", "principal.html"), context=context)
 
-    model = Producto
 
-    template_name = os.path.join(
-        "landingPage", "pages", "principal.html"
-    )
 
-    context_object_name = 'productos'
 
-    # paginate_by = 7
+# Dejamos la vista basada en clases
+# class ProductosLista(ListView):
 
-    def get_context_data(self, **kwargs):
+#     model = Producto
 
-        context = super().get_context_data(**kwargs)
+#     template_name = os.path.join(
+#         "landingPage", "pages", "principal.html"
+#     )
 
-        # Convertimos las URL de las imágenes
-        for producto in context['productos']:
+#     context_object_name = 'productos'
 
-            producto.imagen_mostrar = convertir_url_drive(
-                producto.imagen_url
-            )
+#     # paginate_by = 7
 
-        return context
+#     def get_context_data(self, **kwargs):
+
+#         context = super().get_context_data(**kwargs)
+
+#         # Convertimos las URL de las imágenes
+#         for producto in context['productos']:
+
+#             producto.imagen_mostrar = convertir_url_drive(
+#                 producto.imagen_url
+#             )
+
+#         return context
 
 
 # ==========================================

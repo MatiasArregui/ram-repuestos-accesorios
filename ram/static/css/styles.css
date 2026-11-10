@@ -462,3 +462,44 @@ footer {
     font-size: 1.2rem;
   }
 }
+
+/* ---------------------------------- ESTILOS DE LOS PRODUCTOS -------------------------------------- */
+/* =====================================
+   TARJETAS DE PRODUCTOS
+===================================== */
+
+/* Imágenes */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Tarjetas */
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Efecto hover */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Botones */
+.card .btn {
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .card-img-top {
+    height: 180px;
+  }
+}
