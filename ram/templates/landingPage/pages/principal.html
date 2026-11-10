@@ -1,33 +1,114 @@
 {% extends "./landingPage/base.html" %} {% load static %} {% block contenido %}
 
 <main class="bg-white">
+  {% comment %} PRESENTACIÓN PRINCIPAL {% endcomment %}
+  <section class="fondo text-white py-5">
+    <div class="container text-center py-3">
+      <span class="badge bg-danger mb-3"> Arroyo de los Patos </span>
 
-    {% comment %} PRESENTACIÓN PRINCIPAL {% endcomment %}
+      <h1 class="display-5 fw-bold">RAM Repuestos y Accesorios</h1>
 
-    <section class="fondo text-white py-5">
-        <div class="container text-center py-3">
+      <p class="lead text-white mx-auto">
+        Conocé nuestra selección de productos y encontrá aquello que estás
+        buscando.
+      </p>
 
-            <span class="badge bg-danger mb-3">
-                Arroyo de los Patos
-            </span>
+      <a
+        href="https://wa.me/message/3HKORPH4RUIIA1"
+        class="btn btn-success btn-lg mt-3"
+        target="_blank"
+      >
+        Contáctanos
+      </a>
+    </div>
+  </section>
+  {% comment %} CARROUSEL DE CATEGORIAS DE PRODUCTO {% endcomment %}
+  <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselProductos"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+      ></button>
 
-            <h1 class="display-5 fw-bold">
-                RAM Repuestos y Accesorios
-            </h1>
+      <button
+        type="button"
+        data-bs-target="#carouselProductos"
+        data-bs-slide-to="1"
+      ></button>
 
-            <p class="lead text-white mx-auto">
-                Conocé nuestra selección de productos y encontrá aquello que estás buscando.
-            </p>
+      <button
+        type="button"
+        data-bs-target="#carouselProductos"
+        data-bs-slide-to="2"
+      ></button>
+    </div>
 
-            <a href="https://wa.me/message/3HKORPH4RUIIA1"
-               class="btn btn-success btn-lg mt-3"
-               target="_blank">
-                Contáctanos
-            </a>
+    <!-- Imágenes -->
+    <div class="carousel-inner">
+      <!-- Accesorios -->
+      <div class="carousel-item active">
+        <img
+          src="{% static 'img/accesorios.jpg' %}"
+          class="d-block w-100"
+          alt="Accesorios"
+        />
 
+        <div class="carousel-caption">
+          <h2>Accesorios</h2>
         </div>
-    </section>
+      </div>
 
+      <!-- Repuestos -->
+      <div class="carousel-item">
+        <img
+          src="{% static 'img/repuestos.jpg' %}"
+          class="d-block w-100"
+          alt="Repuestos"
+        />
+
+        <div class="carousel-caption">
+          <h2>Repuestos</h2>
+        </div>
+      </div>
+
+      <!-- Calcomanías -->
+      <div class="carousel-item">
+        <img
+          src="{% static 'img/limpieza.jpg' %}"
+          class="d-block w-100"
+          alt="Calcomanías"
+        />
+
+        <div class="carousel-caption">
+          <h2>Detailing</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flecha anterior -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselProductos"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <!-- Flecha siguiente -->
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselProductos"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
 </main>
 
 {% endblock %}
