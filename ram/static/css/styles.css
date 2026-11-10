@@ -400,3 +400,16 @@ footer {
   opacity: 0.9;
   cursor: pointer;
 }
+
+/* ----------------------------------------------- ESTILOS LANDING PAGE ----------------------------------------------------- */
+.fondo {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.741), rgba(0, 0, 0, 0.741)),
+        url("/static/img/img-1.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 300px;
+}

@@ -23,7 +23,10 @@
   <body>
     <!-- HEADER -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav
+      class="navbar fixed-top"
+      style="backdrop-filter: blur(1rem); background-color: rgba(0, 0, 0, 0.19)"
+    >
       <div class="container">
         <a class="navbar-brand" href="{% url 'principalLanding' %}">
           <span>RAM</span> REPUESTOS
@@ -41,26 +44,16 @@
         <div class="collapse navbar-collapse" id="menuPrincipal">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'listaProductos' %}">
-                Productos
-              </a>
+              <a class="nav-link" href="#"> Productos </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'listaSubcategorias' %}">
-                Subcategorías
-              </a>
+              <a class="nav-link" href="#"> Subcategorías </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'listaMarcas' %}"> Marcas </a>
+              <a class="nav-link" href="#"> Marcas </a>
             </li>
-
-            {% comment %}
-            <li class="nav-item ms-lg-3">
-              <a class="btn btn-ram" href="#"> Contacto </a>
-            </li>
-            {% endcomment %}
           </ul>
         </div>
       </div>
@@ -84,7 +77,7 @@
           </div>
 
           <div class="col-md-4">
-            <h5 class="footer-title">Contacto</h5>
+            <h5 class="footer-title">Contácto</h5>
 
             <p>
               <i class="fas fa-phone"></i>
