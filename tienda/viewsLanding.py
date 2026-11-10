@@ -64,8 +64,6 @@ def principal(request):
     return render(request, os.path.join("landingPage", "pages", "principal.html"), context=context)
 
 
-
-
 # Dejamos la vista basada en clases
 # class ProductosLista(ListView):
 
