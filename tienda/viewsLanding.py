@@ -127,4 +127,22 @@ def listaAccesorios(request):
     context={"accesorios": accesorios, "accesoriosCarrousel": accesoriosCarrousel}
     return render(request, os.path.join("landingPage", "pages", "accesorios.html"), context=context)
 
+def listaDetailing(request):
+    
+    elementos = [{"pk":x.pk, "nombre":x.nombre, "imagen_mostrar":convertir_url_drive(x.imagen_url), "precio":x.precio, "subcategoria": x.subcategoria.nombre} for x in Producto.objects.all() if x.subcategoria.categoria == "Detailing"]
+    print(elementos)
+    elementosCarrousel = []
+    listaNros = []
+    cantidad = len(elementos)
+    while len(listaNros) < 6:
+        nroAzar = random.randint(0,cantidad-1)
+        if nroAzar not in listaNros:
+            listaNros.append(nroAzar)
+            elementosCarrousel.append(elementos[nroAzar])
+        else:
+            print("ya existe en la lista")
+        
+    context={"elementos": elementos, "elementosCarrousel": elementosCarrousel}
+    return render(request, os.path.join("landingPage", "pages", "detailing.html"), context=context)
+
 
