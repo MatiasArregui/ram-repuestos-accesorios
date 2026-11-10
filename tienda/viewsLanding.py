@@ -64,33 +64,6 @@ def principal(request):
     return render(request, os.path.join("landingPage", "pages", "principal.html"), context=context)
 
 
-# Dejamos la vista basada en clases
-# class ProductosLista(ListView):
-
-#     model = Producto
-
-#     template_name = os.path.join(
-#         "landingPage", "pages", "principal.html"
-#     )
-
-#     context_object_name = 'productos'
-
-#     # paginate_by = 7
-
-#     def get_context_data(self, **kwargs):
-
-#         context = super().get_context_data(**kwargs)
-
-#         # Convertimos las URL de las imágenes
-#         for producto in context['productos']:
-
-#             producto.imagen_mostrar = convertir_url_drive(
-#                 producto.imagen_url
-#             )
-
-#         return context
-
-
 # ==========================================
 # DETALLE DE PRODUCTO
 # ==========================================
@@ -118,7 +91,40 @@ class DetalleProducto(DetailView):
 
         return context
 
+def listaProductos(request):
+    
+    productos = [{"pk":x.pk, "nombre":x.nombre, "imagen_mostrar":convertir_url_drive(x.imagen_url), "precio":x.precio, "subcategoria": x.subcategoria.nombre} for x in Producto.objects.all() if x.subcategoria.categoria == "Repuesto"]
+    print(productos)
+    productosCarrousel = []
+    listaNros = []
+    cantidad = len(productos)
+    while len(listaNros) < 6:
+        nroAzar = random.randint(0,cantidad-1)
+        if nroAzar not in listaNros:
+            listaNros.append(nroAzar)
+            productosCarrousel.append(productos[nroAzar])
+        else:
+            print("ya existe en la lista")
+        
+    context={"productos": productos, "productosCarrousel": productosCarrousel}
+    return render(request, os.path.join("landingPage", "pages", "productos.html"), context=context)
 
-
+def listaAccesorios(request):
+    
+    accesorios = [{"pk":x.pk, "nombre":x.nombre, "imagen_mostrar":convertir_url_drive(x.imagen_url), "precio":x.precio, "subcategoria": x.subcategoria.nombre} for x in Producto.objects.all() if x.subcategoria.categoria == "Accesorio"]
+    print(accesorios)
+    accesoriosCarrousel = []
+    listaNros = []
+    cantidad = len(accesorios)
+    while len(listaNros) < 6:
+        nroAzar = random.randint(0,cantidad-1)
+        if nroAzar not in listaNros:
+            listaNros.append(nroAzar)
+            accesoriosCarrousel.append(accesorios[nroAzar])
+        else:
+            print("ya existe en la lista")
+        
+    context={"accesorios": accesorios, "accesoriosCarrousel": accesoriosCarrousel}
+    return render(request, os.path.join("landingPage", "pages", "accesorios.html"), context=context)
 
 

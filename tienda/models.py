@@ -44,6 +44,7 @@ class SubCategoria(models.Model):
     CATEGORIAS = [
         ('Repuesto', 'Repuesto'),
         ('Accesorio', 'Accesorio'),
+        ('Detailing', 'Detailing'),
     ]
 
     nombre = models.CharField(max_length=120)

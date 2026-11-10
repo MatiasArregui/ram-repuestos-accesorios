@@ -1,0 +1,208 @@
+{% extends "./landingPage/base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<main class="bg-white">
+    <!-- CARRUSEL DE PRODUCTOS -->
+
+{% if accesoriosCarrousel %}
+
+<section id="carouselProductos"
+         class="carousel slide productos-carousel"
+         data-bs-ride="carousel"
+         data-bs-interval="4500">
+
+    <!-- INDICADORES DINÁMICOS -->
+
+    <div class="carousel-indicators">
+
+        {% for p in accesoriosCarrousel %}
+
+            <button
+                type="button"
+                data-bs-target="#carouselProductos"
+                data-bs-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"
+                {% if forloop.first %}
+                    aria-current="true"
+                {% endif %}
+                aria-label="Producto {{ forloop.counter }}">
+            </button>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- IMÁGENES DEL CARRUSEL -->
+
+    <div class="carousel-inner">
+
+        {% for p in accesoriosCarrousel %}
+
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                <img
+                    src="{{ p.imagen_mostrar }}"
+                    class="d-block w-100"
+                    alt="{{ p.nombre }}"
+                >
+
+                <div class="carousel-caption">
+
+                    <h2>{{ p.nombre|title }}</h2>
+
+                    <a href="{% url 'detalleProducto' p.pk %}"
+                       class="btn btn-light fw-bold">
+                        Ver accesorio
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- FLECHA ANTERIOR -->
+
+    <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselProductos"
+        data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"
+              aria-hidden="true">
+        </span>
+
+        <span class="visually-hidden">Anterior</span>
+
+    </button>
+
+
+    <!-- FLECHA SIGUIENTE -->
+
+    <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselProductos"
+        data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"
+              aria-hidden="true">
+        </span>
+
+        <span class="visually-hidden">Siguiente</span>
+
+    </button>
+
+</section>
+
+{% endif %}
+
+
+
+    <!-- PRESENTACIÓN DEL CATÁLOGO -->
+
+    <section class="container text-center py-5">
+
+        <h1 class="catalogo-titulo fw-bold">
+            Accesorios
+        </h1>
+
+        <p class="text-secondary fs-5 mb-0">
+            Encuentrá los accesorios que necesitás
+        </p>
+
+        <div class="mx-auto bg-dark mt-3"
+             style="height: 4px; width: 65px;">
+        </div>
+
+    </section>
+
+
+    <!-- GRILLA DE PRODUCTOS -->
+
+    <section class="container pb-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="h4 fw-bold mb-0">
+                Accesorios disponibles
+            </h2>
+
+            <span class="badge bg-dark fs-6">
+                {{ accesorios|length }} accesorios
+            </span>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for producto in accesorios %}
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+                    <div class="card producto-card h-100 shadow-sm">
+
+                        <!-- IMAGEN -->
+
+                        <img
+                            src="{{ producto.imagen_mostrar }}"
+                            class="producto-imagen"
+                            alt="{{ producto.nombre }}"
+                        >
+
+                        <!-- INFORMACIÓN -->
+
+                        <div class="card-body d-flex flex-column">
+
+                            <h5 class="card-title fw-bold producto-titulo">
+                                {{ producto.nombre|title }}
+                            </h5>
+
+                            <p class="producto-precio mb-3">
+                                $ {{ producto.precio }}
+                            </p>
+
+                            <a
+                                href="{% url 'detalleProducto' producto.pk %}"
+                                class="btn btn-dark mt-auto w-100">
+
+                                Ver producto
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center py-5">
+
+                    <h4 class="text-secondary">
+                        No hay productos disponibles.
+                    </h4>
+
+                    <p class="text-muted">
+                        Próximamente encontrarás nuevos productos.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
