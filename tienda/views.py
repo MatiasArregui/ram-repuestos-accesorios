@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import SubCategoria, Producto, Marca
-from .forms import ProductoForm, SubcategoriaForm, MarcaForm
+from .forms import ProductoForm, SubcategoriaForm, MarcaForm, LoginForm
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView, TemplateView
+from django.contrib.auth.views import LoginView
 import os
+
 
 
 class InicioView(TemplateView):
     template_name = os.path.join("carga", "manage", "managePage.html")
-
 
 # Create your views here.
 class ListaProductos(ListView):
@@ -63,14 +64,6 @@ class SubcategoriaDeleteView(DeleteView):
     success_url = reverse_lazy('listaSubcategorias')
     
 
-
-
-
-
-
-
-
-    
 # <------------------------------------------>
 # Create your views here.
 class ListaMarcas(ListView):

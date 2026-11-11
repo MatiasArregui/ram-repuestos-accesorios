@@ -136,3 +136,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+# Configuraciones de Auntenticacion
+LOGIN_URL = '/login/' # URL de la pagina si se intenta ingresar sin iniciar
+LOGIN_REDIRECT_URL = '/manage/' # Redireccion despues de un login exitoso
+LOGOUT_REDIRECT_URL = '/login/' # Redireccion despues de cerrar sesion
