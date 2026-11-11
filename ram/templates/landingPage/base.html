@@ -23,40 +23,53 @@
   <body>
     <!-- HEADER -->
 
-    <nav
-      class="navbar fixed-top"
-      style="backdrop-filter: blur(1rem); background-color: rgba(0, 0, 0, 0.66)"
-    >
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'principalLanding' %}">
-          <span>RAM</span> REPUESTOS
-        </a>
+     <nav class="navbar navbar-expand-lg fixed-top" style="backdrop-filter: blur(1rem); background-color: rgba(0, 0, 0, 0.76);">
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menuPrincipal"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="container">
 
-        <div class="collapse navbar-collapse" id="menuPrincipal">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'accesorioLista'%}"> Accesorios </a>
-            </li>
+            <!-- Logo: vuelve a la página pública -->
+            <a class="navbar-brand" href="{% url 'principalLanding' %}">
+                <span>RAM</span> REPUESTOS
+            </a>
 
-            <li class="nav-item">
-              <a class="nav-link"  href="{% url 'productoLista'%}"> Repuestos </a>
-            </li>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menú"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'detailingLista'%}"> Detailing </a>
-            </li>
-          </ul>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                <ul class="navbar-nav ms-auto">
+                        <!-- Menú de administración -->
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'productoLista' %}">
+                                Repuestos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accesorioLista' %}">
+                                Accesorios
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'detailingLista' %}">
+                                Detailing
+                            </a>
+                        </li>
+                </ul>
+
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- CONTENIDO -->
