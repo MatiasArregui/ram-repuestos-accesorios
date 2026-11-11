@@ -114,4 +114,38 @@ urlpatterns = [
         viewsLanding.DetalleProducto.as_view(),
         name="detalleProducto"
     ),
+    
+    # URLS DEL CARRITO
+
+    path(
+        'carrito/',
+        viewsLanding.verCarrito,
+        name='verCarrito'
+    ),
+
+    path(
+        'carrito/agregar/<str:pk>/',
+        viewsLanding.agregarCarrito,
+        name='agregarCarrito'
+    ),
+
+    path(
+        'carrito/actualizar/<str:pk>/',
+        viewsLanding.actualizarCarrito,
+        name='actualizarCarrito'
+    ),
+
+    path(
+        'carrito/eliminar/<str:pk>/',
+        viewsLanding.eliminarCarrito,
+        name='eliminarCarrito'
+    ),
+
+    path(
+        'carrito/whatsapp/',
+        viewsLanding.solicitarWhatsApp,
+        name='solicitarWhatsApp'
+    ),
+
+
 ]

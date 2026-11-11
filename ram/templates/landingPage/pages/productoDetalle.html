@@ -1,142 +1,309 @@
-{% extends "./landingPage/base.html" %} {% load static %} {% block contenido %}
 
-<main class="bg-white">
-  <!-- ENCABEZADO -->
-  <section class="bg-dark text-white py-4">
-    <div class="container">
-      <h1 class="h3 fw-bold mb-1">Detalle del producto</h1>
-      <p class="text-white-50 mb-0">
-        Conocé todas las características de nuestro producto.
-      </p>
-    </div>
-  </section>
+{% extends "./landingPage/base.html" %}
+{% load static %}
 
-  <!-- DETALLE DEL PRODUCTO -->
-  <section class="container py-5">
-    <!-- NAVEGACIÓN -->
-    <nav aria-label="breadcrumb" class="mb-4">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a
-            href="{% url 'principalLanding' %}"
-            class="text-danger text-decoration-none"
-          >
-            Inicio
-          </a>
-        </li>
+{% block contenido %}
 
-        <li class="breadcrumb-item active text-secondary" aria-current="page">
-          {{ producto.nombre|title }}
-        </li>
-      </ol>
-    </nav>
+<main class="bg-white mt-5">
 
-    <div class="row g-4 g-lg-5 align-items-start">
-      <!-- IMAGEN -->
-      <div class="col-12 col-lg-6">
-        <div class="bg-light rounded-4 p-3 border">
-          {% if producto.imagen_mostrar %}
+    <!-- ENCABEZADO -->
+    <section class="bg-dark text-white py-4">
+        <div class="container">
+            <h1 class="h3 fw-bold mb-1">
+                Detalle del producto
+            </h1>
 
-          <img
-            src="{{ producto.imagen_mostrar }}"
-            alt="{{ producto.nombre }}"
-            class="img-fluid w-100 rounded-3"
-          />
-
-          {% else %}
-
-          <div
-            class="d-flex flex-column justify-content-center align-items-center text-secondary bg-white rounded-3 py-5"
-          >
-            <span class="display-1">?</span>
-            <p class="mb-0">Imagen no disponible</p>
-          </div>
-
-          {% endif %}
+            <p class="text-white-50 mb-0">
+                Conocé todas las características de nuestro producto.
+            </p>
         </div>
-      </div>
+    </section>
 
-      <!-- INFORMACIÓN -->
-      <div class="col-12 col-lg-6">
-        <span class="badge bg-danger mb-3"> PRODUCTO </span>
+    <!-- DETALLE DEL PRODUCTO -->
+    <section class="container py-5">
 
-        <h2 class="display-6 fw-bold text-dark mb-3">
-          {{ producto.nombre |title}}
-        </h2>
+        <!-- MENSAJES DE DJANGO -->
 
-        <div class="border-bottom mb-4"></div>
+{% if messages %}
+    <div class="toast-container position-fixed top-0 end-0 p-3"
+         style="z-index: 2000; margin-top: 75px;">
 
-        <!-- PRECIO -->
-        <div class="mb-4">
-          <p class="text-secondary mb-1">Precio</p>
+        {% for message in messages %}
 
-          <h2 class="text-danger fw-bold">$ {{ producto.precio }}</h2>
-        </div>
+            <div class="toast align-items-center border-0 shadow
+                {% if message.tags == 'success' %}
+                    text-bg-success
+                {% elif message.tags == 'error' %}
+                    text-bg-danger
+                {% elif message.tags == 'warning' %}
+                    text-bg-warning
+                {% else %}
+                    text-bg-dark
+                {% endif %}"
+                role="alert"
+                aria-live="assertive"
+                aria-atomic="true"
+                data-bs-delay="3500">
 
-        <!-- Marca -->
-        <div class="mb-4">
-          <h5 class="fw-bold text-dark">Marca</h5>
-          <p class="text-secondary lh-lg">
-            {{ producto.marca.nombre | title }}
-          </p>
-        </div>
-        <div class="mb-4">
-          <h5 class="fw-bold text-dark">Categoría</h5>
-          <p class="text-secondary lh-lg">
-            {{ producto.subcategoria.categoria | title }}
-          </p>
-          <p class="text-secondary lh-lg">
-            {{ producto.subcategoria.nombre | title }}
-          </p>
-        </div>
+                <div class="d-flex">
 
-        <!-- INFORMACIÓN ADICIONAL -->
-        <div class="bg-light rounded-3 p-3 mb-4 border">
-          <div class="d-flex align-items-center gap-3">
-            <span class="text-danger fs-4">✓</span>
+                    <div class="toast-body">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        {{ message }}
+                    </div>
 
-            <div>
-              <h6 class="fw-bold text-dark mb-1">Consultá por este producto</h6>
+                    <button type="button"
+                            class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast"
+                            aria-label="Cerrar">
+                    </button>
 
-              <p class="text-secondary small mb-0">
-                Comunicate con nosotros para obtener más información.
-              </p>
+                </div>
+
             </div>
-          </div>
-        </div>
 
-        <!-- BOTONES -->
-        <div class="d-grid gap-2 d-sm-flex">
-          <a
-            href="javascript:history.back()"
-            class="btn btn-dark btn-lg flex-grow-1"
-          >
-            Volver atrás
-          </a>
-        </div>
-        <div class="d-grid gap-2 d-sm-flex mt-1">
-          <a
-            href="https://wa.me/c/5493544644455"
-            target="blank"
-            class="btn btn-success btn-lg flex-grow-1"
-          >
-            Catálogo WhatsApp
-          </a>
-        </div>
-      </div>
+        {% endfor %}
+
     </div>
-  </section>
+{% endif %}
 
-  {% comment %} AGREGAR UN MINI CARROUSEL A FUTURO CON ELEMNTOS RELACIONADOS {%
-  endcomment %} {% comment %}
-  <section class="bg-dark text-white py-4">
-    <div class="container text-center">
-      <h5 class="fw-bold mb-2">¿Te interesa este producto?</h5>
 
-      <p class="text-white-50 mb-0">Contactanos para conocer más detalles.</p>
-    </div>
-  </section>
-  {% endcomment %}
+        <!-- NAVEGACIÓN -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+
+                <li class="breadcrumb-item">
+                    <a href="{% url 'principalLanding' %}"
+                       class="text-danger text-decoration-none">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item active text-secondary"
+                    aria-current="page">
+                    {{ producto.nombre|title }}
+                </li>
+
+            </ol>
+        </nav>
+
+        <div class="row g-4 g-lg-5 align-items-start">
+
+            <!-- IMAGEN -->
+            <div class="col-12 col-lg-6">
+
+                <div class="bg-light rounded-4 p-3 border">
+
+                    {% if producto.imagen_mostrar %}
+
+                        <img
+                            src="{{ producto.imagen_mostrar }}"
+                            alt="{{ producto.nombre }}"
+                            class="img-fluid w-100 rounded-3"
+                        >
+
+                    {% else %}
+
+                        <div class="d-flex flex-column justify-content-center align-items-center text-secondary bg-white rounded-3 py-5">
+
+                            <span class="display-1">?</span>
+
+                            <p class="mb-0">
+                                Imagen no disponible
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <!-- INFORMACIÓN -->
+            <div class="col-12 col-lg-6">
+
+                <span class="badge bg-danger mb-3">
+                    PRODUCTO
+                </span>
+
+                <h2 class="display-6 fw-bold text-dark mb-3">
+                    {{ producto.nombre|title }}
+                </h2>
+
+                <div class="border-bottom mb-4"></div>
+
+                <!-- PRECIO -->
+                <div class="mb-4">
+
+                    <p class="text-secondary mb-1">
+                        Precio
+                    </p>
+
+                    <h2 class="text-danger fw-bold">
+                        $ {{ producto.precio }}
+                    </h2>
+
+                </div>
+
+                <!-- MARCA -->
+                <div class="mb-4">
+
+                    <h5 class="fw-bold text-dark">
+                        Marca
+                    </h5>
+
+                    <p class="text-secondary lh-lg">
+                        {{ producto.marca.nombre|title }}
+                    </p>
+
+                </div>
+
+                <!-- CATEGORÍA -->
+                <div class="mb-4">
+
+                    <h5 class="fw-bold text-dark">
+                        Categoría
+                    </h5>
+
+                    <p class="text-secondary lh-lg mb-1">
+                        {{ producto.subcategoria.categoria|title }}
+                    </p>
+
+                    <p class="text-secondary lh-lg">
+                        {{ producto.subcategoria.nombre|title }}
+                    </p>
+
+                </div>
+
+                <!-- STOCK -->
+                <div class="mb-4">
+
+                    <h5 class="fw-bold text-dark">
+                        Disponibilidad
+                    </h5>
+
+                    {% if producto.stock > 0 %}
+
+                        <p class="text-success mb-0">
+
+                            <i class="bi bi-check-circle me-1"></i>
+
+                            Disponible ({{ producto.stock }} unidades)
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="text-danger mb-0">
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            Sin stock disponible
+
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- INFORMACIÓN ADICIONAL -->
+                <div class="bg-light rounded-3 p-3 mb-4 border">
+
+                    <div class="d-flex align-items-center gap-3">
+
+                        <span class="text-danger fs-4">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h6 class="fw-bold text-dark mb-1">
+                                Consultá por este producto
+                            </h6>
+
+                            <p class="text-secondary small mb-0">
+                                Comunicate con nosotros para obtener más información.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-grid gap-2">
+
+                    <!-- AGREGAR AL CARRITO -->
+                    {% if producto.stock > 0 %}
+
+                        <form
+                            method="POST"
+                            action="{% url 'agregarCarrito' producto.pk %}">
+
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-outline-dark btn-lg w-100">
+
+                                <i class="bi bi-cart-plus me-2"></i>
+
+                                Agregar al carrito
+
+                            </button>
+
+                        </form>
+
+                    {% else %}
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-lg w-100"
+                            disabled>
+
+                            <i class="bi bi-cart-x me-2"></i>
+
+                            Producto sin stock
+
+                        </button>
+
+                    {% endif %}
+
+                    <!-- VOLVER ATRÁS -->
+                    <a
+                        href="javascript:history.back()"
+                        class="btn btn-dark btn-lg w-100">
+
+                        <i class="bi bi-arrow-left me-2"></i>
+
+                        Volver atrás
+
+                    </a>
+
+                    <!-- CATÁLOGO WHATSAPP -->
+                    <a
+                        href="https://wa.me/c/5493544644455"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-success btn-lg w-100">
+
+                        <i class="bi bi-whatsapp me-2"></i>
+
+                        Catálogo WhatsApp
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </main>
 
 {% endblock %}
+
